@@ -86,8 +86,6 @@ num_content_layers = len(content_layers)
 num_style_layers = len(style_layers)
 
 def vgg_layers(layer_names):
-  """ Creates a vgg model that returns a list of intermediate output values."""
-  # Load our model. Load pretrained VGG, trained on imagenet data
   vgg = tf.keras.applications.VGG19(include_top=False, weights='imagenet')
   vgg.trainable = False
   
@@ -99,7 +97,6 @@ def vgg_layers(layer_names):
 style_extractor = vgg_layers(style_layers)
 style_outputs = style_extractor(style_image*255)
 
-#Look at the statistics of each layer's output
 for name, output in zip(style_layers, style_outputs):
   print(name)
   print("  shape: ", output.numpy().shape)
